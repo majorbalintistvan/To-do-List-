@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:To_do_list"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+        Title="MainWindow" Height="720" Width="1280">
+    <Grid Margin="10 20 10 20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0" FontStyle="Italic" FontFamily="Bahnschrift" Text="TO-DO-LIST" FontSize="50" FontWeight="Bold" Width="275" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="1" FontStyle="Italic" FontFamily="Bahnschrift" Text="GRAPHS" FontSize="50" FontWeight="Bold" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </Window>
