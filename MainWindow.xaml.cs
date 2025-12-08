@@ -18,7 +18,7 @@ namespace To_do_list
     {
         public MainWindow()
         {
-            InitializeComponent();
+            
         }
     }
 }
