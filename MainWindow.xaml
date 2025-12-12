@@ -58,7 +58,7 @@
             <DataGrid AutoGenerateColumns="False" x:Name="tdlist_DTGD" IsReadOnly="True" SelectionMode="Single" Margin="14,0,5,0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Task" Width="2*"/>
-                    <DataGridTextColumn Header="Due Date" Width="2*"/>
+                    <DataGridTextColumn Header="Due Date" Width="*"/>
                     <DataGridCheckBoxColumn Header="Finished" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
