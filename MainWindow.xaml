@@ -5,7 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:To_do_list"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280" Background="WhiteSmoke">
+        Title="To do list" Height="720" Width="1280" Background="WhiteSmoke">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Bahnschrift"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontFamily" Value="Bahnschrift"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="#EBAB0A"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="Height" Value="440"/>
+            <Setter Property="FontFamily" Value="Bahnschrift"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="RowHeight" Value="40"/>
+            <Setter Property="ColumnHeaderHeight" Value="50"/>
+        </Style>
+    </Window.Resources>
     <Grid Margin="10 20 10 20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,15 +41,28 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0" FontStyle="Italic" FontFamily="Bahnschrift" Text="TO-DO-LIST" FontSize="50" FontWeight="Bold" Width="275" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBlock Grid.Column="1" FontStyle="Italic" FontFamily="Bahnschrift" Text="GRAPHS" FontSize="50" FontWeight="Bold" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button x:Name="Save_BTN" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Width="300" Height="50" FontFamily="Bahnschrift" FontSize="30" Content="SAVE"></Button>
-        <StackPanel Grid.Row="1" Orientation="Vertical">
-            <Button x:Name="Add_BTN" Grid.Row="1" Width="300" Height="50" FontFamily="Bahnschrift" FontSize="30" Content="ADD" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20"></Button>
-            <DataGrid AutoGenerateColumns="False" x:Name="tdlist_DTGD"></DataGrid>
-        </StackPanel>
+        <Border Background="#EBAB0A" CornerRadius="20" Margin="0,0,10,0">
+            <TextBlock Grid.Column="0" Text="TO-DO-LIST" Width="275"/>
+        </Border>
+        <Border Background="#EBAB0A" CornerRadius="20" Grid.Column="1" Margin="10,0,0,0">
+            <TextBlock Grid.Column="1" Text="GRAPHS" Width="200"/>
+        </Border>
         
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="5,15">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="Add_BTN" Grid.Row="1" Content="ADD" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="14"></Button>
+                <Button x:Name="Save_BTN" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Content="SAVE"></Button>
+            </StackPanel>
+            <DataGrid AutoGenerateColumns="False" x:Name="tdlist_DTGD" IsReadOnly="True" SelectionMode="Single" Margin="14,0,5,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Task" Width="2*"/>
+                    <DataGridTextColumn Header="Due Date" Width="*"/>
+                    <DataGridCheckBoxColumn Header="Finished" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <Ellipse Width="250" Height="250" Stroke="#EBAB0A" StrokeThickness="25" Grid.Row="1" Grid.Column="1"/>
     </Grid>
 </Window>
