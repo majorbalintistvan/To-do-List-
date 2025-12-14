@@ -36,8 +36,8 @@
         </Border>
         <Border HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"  Background="#EBAB0A" CornerRadius="5" Width="110" Grid.Row="1">
             <StackPanel Grid.Row="1">
-                <Label Content="Due Date: " Margin="10,0"/>
-                <CheckBox x:Name="nodate_CB" Content="No due date" Margin="20,0,0,10" Foreground="White"/>
+                <Label Content="Due Date: " Margin="5,0,0,0"/>
+                <CheckBox x:Name="nodate_CB" Content="No due date" Margin="10,0,0,10" Foreground="White"/>
             </StackPanel>
         </Border>
         <StackPanel Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -45,5 +45,6 @@
             <Button x:Name="cancel_BTN" Content="Cancel" Margin="30,0,10,0" Width="120" Height="30" />
         </StackPanel>
         <TextBox x:Name="task_TB" Grid.Row="0" Grid.Column="1" Width="240" Margin="5"/>
+        <DatePicker x:Name="duedate_DP" Grid.Row="1" Grid.Column="1" Width="240" Margin="5" Height="50"/>
     </Grid>
 </Window>
