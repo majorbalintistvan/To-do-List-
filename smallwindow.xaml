@@ -41,8 +41,8 @@
             </StackPanel>
         </Border>
         <StackPanel Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="smallsave_BTN" Content="Save" Margin="10,0,30,0" Width="120" Height="30"/>
-            <Button x:Name="cancel_BTN" Content="Cancel" Margin="30,0,10,0" Width="120" Height="30" />
+            <Button x:Name="smalladd_BTN" Content="ADD" Margin="10,0,30,0" Width="120" Height="30" />
+            <Button x:Name="cancel_BTN" Content="CANCEL" Margin="30,0,10,0" Width="120" Height="30" Click="cancel_BTN_Click" />
         </StackPanel>
         <TextBox x:Name="task_TB" Grid.Row="0" Grid.Column="1" Width="240" Margin="5"/>
         <DatePicker x:Name="duedate_DP" Grid.Row="1" Grid.Column="1" Width="240" Margin="5" Height="50"/>

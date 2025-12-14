@@ -17,11 +17,16 @@ namespace To_do_list
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class smallwindow: Window
     {
-        public Window1()
+        public smallwindow()
         {
             InitializeComponent();
+        }
+
+        private void cancel_BTN_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
