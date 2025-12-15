@@ -49,7 +49,7 @@ namespace To_do_list
         {
             if (Inputcheck())
             {
-                Task newtask = new Task(tasks.Task_text, tasks.Date, false);
+                Task newtask = new Task(tasks.Task_text, tasks.Date,false);
 
                 MainWindow? main = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
                 main.Task_list.Add(newtask);
