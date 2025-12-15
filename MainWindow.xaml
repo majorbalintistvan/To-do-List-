@@ -32,6 +32,10 @@
             <Setter Property="RowHeight" Value="40"/>
             <Setter Property="ColumnHeaderHeight" Value="50"/>
         </Style>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+        </Style>
     </Window.Resources>
     <Grid Margin="10 20 10 20">
         <Grid.RowDefinitions>
@@ -56,11 +60,19 @@
                 <Button x:Name="Save_BTN" Grid.Column="0" Content="SAVE" Margin="14"></Button>
                 <Button x:Name="Clear_BTN" Grid.Column="0" Content="CLEAR" Margin="14"/>
             </StackPanel>
-            <DataGrid AutoGenerateColumns="False" x:Name="tdlist_DTGD" IsReadOnly="True" SelectionMode="Single" Margin="14,0,5,0" ItemsSource="{Binding Task_list}">
+            <DataGrid AutoGenerateColumns="False" x:Name="tdlist_DTGD" IsReadOnly="True" SelectionMode="Single" Margin="10,0,5,0" ItemsSource="{Binding Task_list}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Task" Width="2*" Binding="{Binding Task_text}" FontSize="30" />
-                    <DataGridTextColumn Header="Due Date" Width="*" Binding="{Binding Date}"  FontSize="30"/>
-                    <DataGridCheckBoxColumn Header="Finished" Width="*" Binding="{Binding IsDone}"/>
+                    <DataGridTextColumn Header="Task" Width="2*" Binding="{Binding Task_text}" FontSize="25"/>
+                    <DataGridTextColumn Header="Due Date" Width="*" Binding="{Binding Date, TargetNullValue=N/A, StringFormat=yyyy-MM-dd}"  FontSize="25"/>
+                    <DataGridTemplateColumn Header="Finished" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Viewbox Width="30" Height="30">
+                                    <CheckBox IsChecked="{Binding IsDone}" />
+                                </Viewbox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

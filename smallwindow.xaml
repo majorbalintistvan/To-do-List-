@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:To_do_list"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Add" Height="200" Width="420">
     <Window.Resources>
@@ -45,6 +46,6 @@
             <Button x:Name="cancel_BTN" Content="CANCEL" Margin="30,0,10,0" Width="120" Height="30" Click="cancel_BTN_Click" />
         </StackPanel>
         <TextBox Grid.Row="0" Grid.Column="1" Width="240" Margin="5" Text="{Binding tasks.Task_text}"/>
-        <DatePicker x:Name="duedate_DP" Grid.Row="1" Grid.Column="1" Width="240" Margin="5" Height="50" SelectedDate="{x:Null}"/>
+        <DatePicker x:Name="duedate_DP" Grid.Row="1" Grid.Column="1" Width="240" Margin="5" Height="50" SelectedDate="{Binding tasks.Date}" DisplayDateStart="{x:Static sys:DateTime.Today}" DisplayDateEnd="{x:Static sys:DateTime.MaxValue}"/>
     </Grid>
 </Window>
