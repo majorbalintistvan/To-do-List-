@@ -17,11 +17,11 @@ namespace To_do_list
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Task> Tasks { get; set; } = new ObservableCollection<Task>();
-
+        public ObservableCollection<Task> Task_list { get; set; } = new ObservableCollection<Task>();
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
 
         private void Add_BTN_Click(object sender, RoutedEventArgs e)
