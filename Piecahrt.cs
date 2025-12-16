@@ -23,8 +23,8 @@ namespace To_do_list
         public Piecahrt(ObservableCollection<Task> tasks)
         {
             cahrt_tasks = tasks;
-            Model = new PlotModel {Title = "Progress"};
-            pieSeries = new PieSeries{InnerDiameter = 0.6,StrokeThickness=3, FontSize=15};
+            Model = new PlotModel {Title = "Progress", PlotMargins= new OxyThickness(10, 30, 30, 10) };
+            pieSeries = new PieSeries{InnerDiameter = 0.6,StrokeThickness=2, StartAngle=0};
             Model.Series.Add(pieSeries);
             cahrt_tasks.CollectionChanged += ModifyCollection;
             AddTasks();
@@ -52,8 +52,10 @@ namespace To_do_list
             int doneCount = cahrt_tasks.Count(t => t.IsDone);
             int notdoneCount = cahrt_tasks.Count - doneCount;
             pieSeries.Slices.Clear();
-            pieSeries.Slices.Add(new PieSlice("Done", doneCount));
-            pieSeries.Slices.Add(new PieSlice("Not Done", notdoneCount));
+            pieSeries.Slices.Add(new PieSlice("Done", doneCount) { Fill=OxyColors.Green});
+            pieSeries.Slices.Add(new PieSlice("Not Done", notdoneCount) { Fill=OxyColors.DarkRed});
+            pieSeries.InsideLabelFormat = null;
+            pieSeries.OutsideLabelFormat = null;
             Model.InvalidatePlot(true);
         }
     }
