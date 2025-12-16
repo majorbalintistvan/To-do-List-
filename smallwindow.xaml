@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:To_do_list"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Add" Height="200" Width="420">
     <Window.Resources>
@@ -37,14 +38,14 @@
         <Border HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"  Background="#EBAB0A" CornerRadius="5" Width="110" Grid.Row="1">
             <StackPanel Grid.Row="1">
                 <Label Content="Due Date: " Margin="5,0,0,0"/>
-                <CheckBox x:Name="nodate_CB" Content="No due date" Margin="10,0,0,10" Foreground="White"/>
+                <CheckBox x:Name="nodate_CB" Content="No due date" Margin="10,0,0,10" Foreground="White" Checked="nodate_CB_Checked" Unchecked="nodate_CB_Unchecked"/>
             </StackPanel>
         </Border>
         <StackPanel Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="smallsave_BTN" Content="Save" Margin="10,0,30,0" Width="120" Height="30"/>
-            <Button x:Name="cancel_BTN" Content="Cancel" Margin="30,0,10,0" Width="120" Height="30" />
+            <Button x:Name="smalladd_BTN" Content="ADD" Margin="10,0,30,0" Width="120" Height="30" Click="smalladd_BTN_Click" />
+            <Button x:Name="cancel_BTN" Content="CANCEL" Margin="30,0,10,0" Width="120" Height="30" Click="cancel_BTN_Click" />
         </StackPanel>
-        <TextBox x:Name="task_TB" Grid.Row="0" Grid.Column="1" Width="240" Margin="5"/>
-        <DatePicker x:Name="duedate_DP" Grid.Row="1" Grid.Column="1" Width="240" Margin="5" Height="50"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="240" Margin="5" Text="{Binding tasks.Task_text}"/>
+        <DatePicker x:Name="duedate_DP" Grid.Row="1" Grid.Column="1" Width="240" Margin="5" Height="50" SelectedDate="{Binding tasks.Date}" DisplayDateStart="{x:Static sys:DateTime.Today}" DisplayDateEnd="{x:Static sys:DateTime.MaxValue}"/>
     </Grid>
 </Window>

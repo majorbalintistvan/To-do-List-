@@ -32,12 +32,15 @@
             <Setter Property="RowHeight" Value="40"/>
             <Setter Property="ColumnHeaderHeight" Value="50"/>
         </Style>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+        </Style>
     </Window.Resources>
     <Grid Margin="10 20 10 20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
@@ -49,20 +52,37 @@
         <Border Background="#EBAB0A" CornerRadius="20" Grid.Column="1" Margin="10,0,0,0">
             <TextBlock Grid.Column="1" Text="GRAPHS" Width="200"/>
         </Border>
-        
+
         <StackPanel Grid.Row="1" Orientation="Vertical" Margin="5,15">
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="Add_BTN" Grid.Row="1" Content="ADD" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="14"></Button>
-                <Button x:Name="Save_BTN" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Content="SAVE"></Button>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="Add_BTN" Content="ADD" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="14" Click="Add_BTN_Click"></Button>
+                <Button x:Name="Save_BTN" Grid.Column="0" Content="SAVE" Margin="14" Click="Save_BTN_Click"></Button>
+                <Button x:Name="Clear_BTN" Grid.Column="0" Content="CLEAR" Margin="14" Click="Clear_BTN_Click"/>
             </StackPanel>
-            <DataGrid AutoGenerateColumns="False" x:Name="tdlist_DTGD" IsReadOnly="True" SelectionMode="Single" Margin="14,0,5,0">
+            <DataGrid AutoGenerateColumns="False" x:Name="tdlist_DTGD"  SelectionMode="Single" Margin="10,0,5,0" ItemsSource="{Binding Task_list}" CanUserAddRows="False" SelectionUnit="Cell">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Task" Width="2*"/>
-                    <DataGridTextColumn Header="Due Date" Width="*"/>
-                    <DataGridCheckBoxColumn Header="Finished" Width="*"/>
+                    <DataGridTextColumn Header="Task" Width="2*" Binding="{Binding Task_text}" FontSize="25"/>
+                    <DataGridTextColumn Header="Due Date" Width="*" Binding="{Binding Date, TargetNullValue=N/A, StringFormat=yyyy-MM-dd}"  FontSize="25"/>
+                    <DataGridTemplateColumn Header="Finished" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Viewbox Width="30" Height="30">
+                                    <CheckBox IsChecked="{Binding IsDone}" IsHitTestVisible="False"/>
+                                </Viewbox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <Viewbox Width="30" Height="30">
+                                    <CheckBox IsChecked="{Binding IsDone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </Viewbox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <Ellipse Width="250" Height="250" Stroke="#EBAB0A" StrokeThickness="25" Grid.Row="1" Grid.Column="1"/>
+        <Ellipse Grid.Column="1" Grid.Row="1"  Stroke="DarkRed" StrokeThickness="20" Width="300" Height="300"/>
+        
     </Grid>
 </Window>
