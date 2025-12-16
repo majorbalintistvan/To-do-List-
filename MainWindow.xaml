@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:To_do_list"
         xmlns:oxy="http://oxyplot.org/wpf"
+        Closing="Window_Closing"
         mc:Ignorable="d"
         Title="To Do List" Height="720" Width="1280" Background="WhiteSmoke">
     <Window.Resources>

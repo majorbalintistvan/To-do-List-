@@ -21,12 +21,14 @@ namespace To_do_list
     {
         public ObservableCollection<Task> Task_list { get; set; } = new ObservableCollection<Task>();
         public Piecahrt Chart { get; set; }
+        private int save_counter = 0;
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = this;
             LoadTasks();
             Chart = new Piecahrt(Task_list);
+            save_counter= 0;
         }
 
         private void Add_BTN_Click(object sender, RoutedEventArgs e)
@@ -41,6 +43,7 @@ namespace To_do_list
                 string json = JsonSerializer.Serialize(Task_list);
                 File.WriteAllText("savedtasks.json", json);
                 MessageBox.Show("Successfull saving", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                save_counter++;
             }
             catch (Exception)
             {
@@ -82,5 +85,18 @@ namespace To_do_list
                 }
             }
         }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (save_counter<1)
+            {
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to exit without saving?", "Confirm Exit", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result != MessageBoxResult.Yes)
+                {
+                    string json = JsonSerializer.Serialize(Task_list);
+                    File.WriteAllText("savedtasks.json", json);
+                }
+            }
+        }
+
     }
 }
