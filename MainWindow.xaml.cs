@@ -51,9 +51,24 @@ namespace To_do_list
 
         private void Clear_BTN_Click(object sender, RoutedEventArgs e)
         {
-            Task_list.Clear();
+            MessageBoxResult result = MessageBox.Show("Do you want to delete only the finished tasks?", "Question", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    ObservableCollection<Task> remaining = new ObservableCollection<Task>(Task_list.Where(x => x.IsDone == false)); ;
+                    Task_list.Clear();
+                    foreach (var task in remaining)
+                    {
+                        Task_list.Add(task);
+                    }
+                    break;
+                case MessageBoxResult.No:
+                    Task_list.Clear();
+                    break;
+                case MessageBoxResult.Cancel:
+                    break;
+            }
         }
-
         private void LoadTasks()
         {
             if (File.Exists("savedtasks.json"))
