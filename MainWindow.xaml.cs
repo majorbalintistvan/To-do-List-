@@ -20,11 +20,13 @@ namespace To_do_list
     public partial class MainWindow : Window
     {
         public ObservableCollection<Task> Task_list { get; set; } = new ObservableCollection<Task>();
+        public Piecahrt Chart { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = this;
             LoadTasks();
+            Chart = new Piecahrt(Task_list);
         }
 
         private void Add_BTN_Click(object sender, RoutedEventArgs e)
@@ -38,18 +40,20 @@ namespace To_do_list
             try {
                 string json = JsonSerializer.Serialize(Task_list);
                 File.WriteAllText("savedtasks.json", json);
-                MessageBox.Show("Save was successfull", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Successfull saving", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception)
             {
-                MessageBox.Show("Error while saving tasks: ","Error",MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Saving failed","Error",MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
         }
+
         private void Clear_BTN_Click(object sender, RoutedEventArgs e)
         {
             Task_list.Clear();
         }
+
         private void LoadTasks()
         {
             if (File.Exists("savedtasks.json"))
